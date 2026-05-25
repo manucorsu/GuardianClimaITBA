@@ -1,7 +1,8 @@
 # Funcionalidades utilizadas por el Menú de Acceso en main
 from . import csv_io
 from .password_strength import validar_password, criterios_strs
-from .choicer import choicer
+from . import choicer
+from .clear import clear
 
 PATH_CSV_USUARIOS = "csv/usuarios_simulados.csv"
 COLUMNAS_CSV_USUARIOS = ["username", "password_simulada"]
@@ -26,10 +27,11 @@ def registrar_usuario(username: str, password: str):
 
     usuarios_simulados.append({"username": username, "password_simulada": password})
     csv_io.escribir(PATH_CSV_USUARIOS, COLUMNAS_CSV_USUARIOS, usuarios_simulados)
-    print("Usuario registrado exitosamente.")
+    return username
 
 
 def registrar_usuario_prompt():
+    clear()
     print("--Registrar usuario nuevo--")
     username = input("Nombre de usuario: ")
     password = ""
@@ -42,10 +44,11 @@ def registrar_usuario_prompt():
             password = pw1
     try:
         print("Registrando...", end="")
-        registrar_usuario(username, password)
+        ru = registrar_usuario(username, password)
         print("✅\nUsuario registrado exitosamente.\n")
+        return ru
     except ValueError as ex:
-        print(f"❌\n{ex}")
+        print(f"❌\n{ex}\n")
 
 
 def login(username: str, password: str):
@@ -57,18 +60,27 @@ def login(username: str, password: str):
 
 
 def login_prompt():
+    clear()
     print("--Iniciar sesión--")
-    username = input("Nombre de usuario: ")
-    password = input("Contraseña: ")
     u = None
     while u is None:
         try:
-            print("Iniciando sesión...", end="")
+            username = input("Nombre de usuario: ")
+            password = input("Contraseña: ")
+            print("\nIniciando sesión...", end="")
             u = login(username, password)
             print("✅\nSesión iniciada exitosamente.\n")
         except ValueError as ex:
-            print(f"❌\n{ex}")
-            choice = choicer(["Reintentar", "Volver al menú"])
-            if choice == 1:
-                return None
+            print(f"❌\n{ex}\n")
+            OPCIONES = ["Reintentar", "Volver al menú"]
+            choice = choicer.choicer(OPCIONES)
+            match(choice):
+                case 0: 
+                    print()
+                    continue
+                case 1: 
+                    return None
+                case _:
+                    raise choicer.caso_imposible(choice, OPCIONES)
+                    
     return u

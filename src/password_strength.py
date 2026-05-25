@@ -2,9 +2,9 @@ from datetime import datetime
 
 # Criterios (este diccionario se usa en mensajes de error):
 criterios_strs = {
-    "longitud": "Longitud: No puede tener menos de 12 caracteres. Asegrate de que tu contraseña tenga al menos 12 caracteres para una mayor seguridad.",
-    "contenido": "Contenido/unicidad: No puede contener el nombre de usuario, ser una contraseña común, contener el año actual o palabras relacionadas al clima o a la aplicación. Asegurate de que tu contraseña no incluya tu nombre de usuario, no sea una contraseña común (como '123456' o 'password'), no contenga el año actual, y no incluya palabras relacionadas al clima o a la aplicación para mejorar su seguridad.",
-    "complejidad": "Complejidad: Debe mezclar diferentes tipos de caracteres (mayúsculas, minúsculas, números y símbolos). Asegurate de que tu contraseña incluya una combinación de mayúsculas, minúsculas, números y símbolos para aumentar su complejidad y resistencia a ataques.",
+    "longitud": "No puede tener menos de 12 caracteres. Asegrate de que tu contraseña tenga al menos 12 caracteres para una mayor seguridad.",
+    "contenido": "No puede contener el nombre de usuario, ser una contraseña común, contener el año actual o palabras relacionadas al clima o a la aplicación. Asegurate de que tu contraseña no incluya tu nombre de usuario, no sea una contraseña común (como '123456' o 'password'), no contenga el año actual, y no incluya palabras relacionadas al clima o a la aplicación para mejorar su seguridad.",
+    "complejidad": "Debe mezclar diferentes tipos de caracteres (mayúsculas, minúsculas, números y símbolos). Asegurate de que tu contraseña incluya una combinación de mayúsculas, minúsculas, números y símbolos para aumentar su complejidad y resistencia a ataques.",
 }
 
 PASSWORDS_COMUNES = [
@@ -54,8 +54,7 @@ def _contenido(password: str, username: str) -> bool:
         return password in PASSWORDS_COMUNES
 
     def contiene_el_anio_actual(password: str) -> bool:
-        anio_actual = datetime.now().year
-        return str(anio_actual) in password
+        return str(datetime.now().year) in password
 
     def contiene_palabras_prohibidas(password: str) -> bool:
         lp = password.lower()
