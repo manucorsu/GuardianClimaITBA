@@ -12,7 +12,7 @@
     - Los comandos deben ser ejecutados **en el directorio del proyecto** y en una terminal válida:
         - **cmd** en Windows (las instrucciones están escritas exclusivamente para cmd y no para PowerShell)
         - **zsh, bash o similar** en macOS y Linux.
-    - _**importante para usuarios de macOS y Linux**: Las instrucciones muestran a los comandos de Python y pip como `python` y `pip` respectivamente. Dependiendo de su configuración, puede que tengan que cambiarlos a `python3`/`pip3` u otra variación. El comando que usen habitualmente debería estar bien siempre y cuando sea una versión de Python estándar, estable y mayor a 3.10_
+    - _**importante para usuarios de macOS y Linux**: Las instrucciones muestran al comando de Python como `python`. Dependiendo de su configuración, puede que tengan que cambiarlo por `python3` u otra variación. El comando que usen habitualmente debería estar bien siempre y cuando sea una versión de Python estándar, estable y mayor a 3.10_
 
 ### 1.1 Crear el entorno virtual
 Usamos los entornos virtuales de Python (`venv`) para evitar conflictos entre los paquetes que descarga nuestra aplicación y los que ya pudieran estar instalados en el sistema.
@@ -39,6 +39,7 @@ source .venv/bin/activate
 ```
 
 En cualquier caso, deberían ver **`(.venv)`** escrito al lado del campo en el que normalmente escriben los comandos en la terminal, ej. (en Windows):
+
 ![(.venv) C:\Users\user\GuardianClimaITBA>](./assets/venv.png)
 
 ### 1.3 Instalar las dependencias
@@ -48,17 +49,17 @@ Todas las dependencias están en `requirements.txt`, en un formato que permite q
 python -m pip install -r requirements.txt
 ```
 
-Verán cómo pip descarga todas las dependencias (y sus dependencias) al venv, puede tardar un tiempo.
+Verán cómo pip descarga todas las dependencias (y sus dependencias) al venv, puede tardar un tiempo. Si ven un error, asegúrense de tener el entorno activado y estar utilizando una versión de Python mayor o igual a 3.10.
 
 ### 1.4 Crear `.env` con las API Keys necesarias.
 El `.env` (no confundir con `.venv`) es un archivo de texto que contiene las API keys y otros datos sensibles que no deben ser subidos como parte del repositorio. Por este motivo, no aparece creado, ya que está en `.gitignore`.
 
-Para que el programa pueda utilizar las APIs de OpenWeatherMap y Gemini, deben crear manualmente un archivo de texto y llamarlo `.env` (asegúrense de que no haya nada antes del punto ni después de `env`, el nombre completo del archivo debe ser `.env`, no `.env.txt` ni nada parecido), y en él, escriban estas dos líneas:
+Para que el programa pueda utilizar las APIs de OpenWeatherMap y Gemini, deben crear manualmente un archivo de texto **en el root del proyecto** y llamarlo `.env` (asegúrense de que no haya nada antes del punto ni después de `env`, el nombre completo del archivo debe ser `.env`, no `.env.txt` ni nada parecido), y en él, escriban estas dos líneas:
 ```dotenv
 OWM_API_KEY='tu api key de OWM'
 GEMINI_API_KEY='tu api key de Gemini'
 ```
-Reemplazando `'tu api key de de OWM'` y `'tu api key de Gemini'` por sus keys reales de OpenWeatherMap y Gemin respectivamente
+Reemplazando `'tu api key de de OWM'` y `'tu api key de Gemini'` por sus keys reales de OpenWeatherMap y Gemini respectivamente.
 ### 1.5 Correr la aplicación
 Simplemente ejecuten en una terminal con el venv actviado:
 ```bash
