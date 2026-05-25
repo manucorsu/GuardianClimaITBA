@@ -81,6 +81,6 @@ def login_prompt():
                 case 1:
                     return None
                 case _:
-                    raise choicer.caso_imposible(choice, OPCIONES)
+                    choicer.caso_imposible(choice, OPCIONES)
 
     return u
