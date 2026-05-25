@@ -1,3 +1,7 @@
+# -- creado manualmente/específico de la aplicación --
+csv/
+
+# -- Python genérico, generado automáticamente por GitHub --
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

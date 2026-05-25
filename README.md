@@ -62,6 +62,8 @@ Reemplazando `'tu api key de de OWM'` y `'tu api key de Gemini'` por sus keys re
 ### 1.5 Correr la aplicación
 Simplemente ejecuten en una terminal con el venv actviado:
 ```bash
-python main.py
+python -m src.main
 ```
 Y cualquier otro archivo requerido (ej. los CSVs solicitados vacíos), será creado automáticamente por la aplicación.
+
+Esta sintaxis se utiliza porque la aplicación está dividida en módulos, y 
