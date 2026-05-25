@@ -23,5 +23,8 @@ def choicer(
         except ValueError:
             print("Entrada no válida. Por favor, ingresá un número.")
 
-def caso_imposible(choice: int, opciones:list[Any]):
-    raise IndexError(f"Error en choicer: Devolvió un índice imposible {choice} para una lista de {len(opciones)} elementos")
+
+def caso_imposible(choice: int, opciones: list[Any]):
+    raise IndexError(
+        f"Error en choicer: Devolvió un índice imposible {choice} para una lista de {len(opciones)} elementos"
+    )

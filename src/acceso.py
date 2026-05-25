@@ -74,13 +74,13 @@ def login_prompt():
             print(f"❌\n{ex}\n")
             OPCIONES = ["Reintentar", "Volver al menú"]
             choice = choicer.choicer(OPCIONES)
-            match(choice):
-                case 0: 
+            match (choice):
+                case 0:
                     print()
                     continue
-                case 1: 
+                case 1:
                     return None
                 case _:
                     raise choicer.caso_imposible(choice, OPCIONES)
-                    
+
     return u

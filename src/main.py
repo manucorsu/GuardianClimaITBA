@@ -28,7 +28,7 @@ while username is None:
         clear()
     else:
         clear_menu_acceso = True
-        
+
     print("☀️  GuardianClimaITBA ☀️\n")
 
     print("🚪 Menú de acceso")
