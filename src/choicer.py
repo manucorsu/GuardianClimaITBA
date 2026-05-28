@@ -2,8 +2,10 @@ from typing import TypeVar
 
 T = TypeVar("T")
 
-
-def choicer(opciones: list[T]) -> T:
+# Hace que el usuario elija un elemento de la lista y devuelve ese elemento.
+# Usa T genérico para que pylance reconozca bien los casos de los menúes de opciones
+# (por eso esos usan list(enum) en vez de una lista normal y ya)
+def choicer(opciones: list[T]) -> T: 
     lngth = len(opciones)
 
     if lngth < 2:
@@ -13,7 +15,7 @@ def choicer(opciones: list[T]) -> T:
             print(f"{i+1}. {o}")
 
         try:
-            chi = int(input(f"Elegí una opción [1-{lngth}]: ")) - 1
+            chi = int(input(f"\nElegí una opción [1-{lngth}]: ")) - 1
             if chi in range(0, lngth):
                 return opciones[chi]
             else:

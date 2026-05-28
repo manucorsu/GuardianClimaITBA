@@ -1,4 +1,4 @@
-# ☀️ GuardianClimaITBA
+# ☀️ GuardiánClima ITBA
 **Grupo 121 ("")**
 - Matías Barreiro
 - Lautaro Cavagna
@@ -40,7 +40,7 @@ source .venv/bin/activate
 
 En cualquier caso, deberían ver **`(.venv)`** escrito al lado del campo en el que normalmente escriben los comandos en la terminal, ej. (en Windows):
 
-![(.venv) C:\Users\user\GuardianClimaITBA>](./assets/venv.png)
+![(.venv) C:\Users\user\GuardiánClima ITBA>](./assets/venv.png)
 
 ### 1.3 Instalar las dependencias
 Todas las dependencias están en `requirements.txt`, en un formato que permite que pip las instale con un solo comando. En cualquier plataforma:

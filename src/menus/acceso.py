@@ -1,8 +1,8 @@
 # Funcionalidades utilizadas por el Menú de Acceso en main
-from . import csv_io
-from .password_strength import validar_password, criterios_strs
-from .choicer import choicer
-from .clear import clear
+from .. import csv_io
+from ..password_strength import validar_password, criterios_strs
+from ..choicer import choicer
+from ..clear import clear
 from .opc_menu_base import OpcionesMenu
 
 PATH_CSV_USUARIOS = "csv/usuarios_simulados.csv"
@@ -83,8 +83,38 @@ def login_prompt():
             ch = choicer(list(OpcReintentarLogin))
             match (ch):
                 case OpcReintentarLogin.REINTENTAR:
-                    print()
+                    clear()
                     continue
                 case OpcReintentarLogin.VOLVER_AL_MENU:
                     return None
     return u
+
+
+class OpcMenuAcceso(OpcionesMenu):
+    INICIAR_SESION = "Iniciar sesión"
+    REGISTRAR_USUARIO = "Registrar nuevo usuario"
+    SALIR = "Salir de la aplicación"
+
+
+def menu_acceso():
+    clear_menu_acceso = False
+    username = None
+    while username is None:
+        if clear_menu_acceso:
+            clear()
+        else:
+            clear_menu_acceso = True
+
+        print("☀️  GuardiánClima ITBA ☀️\n")
+        print("🚪 Menú de acceso\n")
+        ch = choicer(list(OpcMenuAcceso))
+        match (ch):
+            case OpcMenuAcceso.INICIAR_SESION:
+                username = login_prompt()
+            case OpcMenuAcceso.REGISTRAR_USUARIO:
+                username = registrar_usuario_prompt()
+                clear_menu_acceso = False
+            case OpcMenuAcceso.SALIR:
+                print("Saliendo...")
+                exit(0)
+    return username

@@ -1,10 +1,9 @@
-from .clear import clear
 from . import secrets
-from .opc_menu_base import OpcionesMenu
+from .menus.acceso import menu_acceso
+from .menus.opc_menu_base import OpcionesMenu
 from .choicer import choicer
-from .acceso import login_prompt, registrar_usuario_prompt
 
-print("☀️  Iniciando GuardianClimaITBA ☀️")
+print("☀️  Iniciando GuardiánClima ITBA ☀️")
 
 # No se permite la ejecución si no están las keys
 print("Validando existencia de API keys... ", end="")
@@ -20,32 +19,20 @@ if not secrets.gemini_api_key:
     exit(1)
 print("✅\n")
 
-
-# entrypoint: Menú de Acceso
-class OpcMenuAcceso(OpcionesMenu):
-    INICIAR_SESION = "Iniciar sesión"
-    REGISTRAR_USUARIO = "Registrar nuevo usuario"
-    SALIR = "Salir de la aplicación"
-
-
-clear_menu_acceso = False
+class OpcMenuPrincipal(OpcionesMenu):
+    CONSULTA_CLIMA = "Consultar clima actual" # (y guardar en historial global)
+    VER_HISTORIAL = "Ver historial de consultas"
+    ESTADISTICAS_EXPORTAR = "Estadísticas de uso/exportar historial"
+    IA_VESTIR = "Consejo IA: ¿Cómo me visto hoy?"
+    ACERCA_DE = "Acerca de"
 username = None
-while username is None:
-    if clear_menu_acceso:
-        clear()
-    else:
-        clear_menu_acceso = True
+while True:
+    # entrypoint: Menú de Acceso
+    if username is None:
+        username = menu_acceso()
 
-    print("☀️  GuardianClimaITBA ☀️\n")
-    print("🚪 Menú de acceso")
-    ch = choicer(list(OpcMenuAcceso))
-    match (ch):
-        case OpcMenuAcceso.INICIAR_SESION:
-            username = login_prompt()
-        case OpcMenuAcceso.REGISTRAR_USUARIO:
-            username = registrar_usuario_prompt()
-            clear_menu_acceso = False
-        case OpcMenuAcceso.SALIR:
-            print("Saliendo...")
-            exit(0)
-print(username)
+    # Una vez autenticado pasa al menú principal
+    print("☀️  GuardiánClima ITBA ☀️\n")
+    print("📜 Menú principal\n")
+    ch = choicer(list(OpcMenuPrincipal))
+    raise NotImplementedError()
