@@ -1,6 +1,8 @@
 import os
 import subprocess
 
+COMMAND = "cls" if os.name == "nt" else "clear"
+
 
 def clear():
-    subprocess.run(["cls" if os.name == "nt" else "clear"], shell=True)
+    subprocess.run([COMMAND], shell=True)

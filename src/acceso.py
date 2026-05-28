@@ -1,8 +1,9 @@
 # Funcionalidades utilizadas por el Menú de Acceso en main
 from . import csv_io
 from .password_strength import validar_password, criterios_strs
-from . import choicer
+from .choicer import choicer
 from .clear import clear
+from .opc_menu_base import OpcionesMenu
 
 PATH_CSV_USUARIOS = "csv/usuarios_simulados.csv"
 COLUMNAS_CSV_USUARIOS = ["username", "password_simulada"]
@@ -40,6 +41,8 @@ def registrar_usuario_prompt():
         pw2 = input("Repetir contraseña: ")
         if pw1 != pw2:
             print("Las contraseñas no coinciden. Por favor, volvé a intentarlo.")
+        if pw1 == "":
+            print("Debés ingresar una contraseña")
         else:
             password = pw1
     try:
@@ -59,6 +62,11 @@ def login(username: str, password: str):
     raise ValueError("Usuario o contraseña incorrecta.")
 
 
+class OpcReintentarLogin(OpcionesMenu):
+    REINTENTAR = "Reintentar"
+    VOLVER_AL_MENU = "Volver al menú"
+
+
 def login_prompt():
     clear()
     print("--Iniciar sesión--")
@@ -72,15 +80,11 @@ def login_prompt():
             print("✅\nSesión iniciada exitosamente.\n")
         except ValueError as ex:
             print(f"❌\n{ex}\n")
-            OPCIONES = ["Reintentar", "Volver al menú"]
-            choice = choicer.choicer(OPCIONES)
-            match (choice):
-                case 0:
+            ch = choicer(list(OpcReintentarLogin))
+            match (ch):
+                case OpcReintentarLogin.REINTENTAR:
                     print()
                     continue
-                case 1:
+                case OpcReintentarLogin.VOLVER_AL_MENU:
                     return None
-                case _:
-                    choicer.caso_imposible(choice, OPCIONES)
-
     return u

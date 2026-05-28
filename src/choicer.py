@@ -1,30 +1,22 @@
-from typing import Any
+from typing import TypeVar
+
+T = TypeVar("T")
 
 
-def choicer(
-    opciones: list[Any], mensaje: str = "Elegí una opción"
-) -> (
-    int
-):  # le da al usuario un menú de opciones para elegir, devuelve el índice de la opción elegida
+def choicer(opciones: list[T]) -> T:
     lngth = len(opciones)
+
     if lngth < 2:
-        raise ValueError("Deben haber por lo menos dos opciones.")
-
-    mensaje += f" [1-{lngth}]: "
+        raise ValueError(f"Deben haber al menos dos opciones (hay {lngth})")
     while True:
-        for i, opcion in enumerate(opciones):
-            print(f"{i+1}. {opcion}")
+        for i, o in enumerate(opciones):
+            print(f"{i+1}. {o}")
+
         try:
-            eleccion = int(input(mensaje))
-            if 1 <= eleccion <= lngth:
-                return eleccion - 1
+            chi = int(input(f"Elegí una opción [1-{lngth}]: ")) - 1
+            if chi in range(0, lngth):
+                return opciones[chi]
             else:
-                print(f"Por favor, ingresá un número entre 1 y {lngth}.")
+                print(f"Opción inválida; Debés ingresar un número entre 1 y {lngth}\n")
         except ValueError:
-            print("Entrada no válida. Por favor, ingresá un número.")
-
-
-def caso_imposible(choice: int, opciones: list[Any]):
-    raise IndexError(
-        f"Error en choicer: Devolvió un índice imposible {choice} para una lista de {len(opciones)} elementos"
-    )
+            print("Debés ingresar un número.")

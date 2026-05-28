@@ -1,5 +1,6 @@
 import csv
 from typing import Any
+from pathlib import Path
 
 
 def leer_o_crear(path: str, columnas: list[str]) -> list[dict[str, str]]:
@@ -15,14 +16,12 @@ def leer_o_crear(path: str, columnas: list[str]) -> list[dict[str, str]]:
             return list(reader)
 
     except FileNotFoundError:
-        with open(path, "w", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=columnas)
-            writer.writeheader()
-
-        return leer_o_crear(path, columnas)
+        escribir(path, columnas, [])
 
 
 def escribir(path: str, columnas: list[str], datos: list[dict[str, Any]]):
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+
     with open(path, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=columnas)
         writer.writeheader()

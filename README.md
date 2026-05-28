@@ -12,7 +12,7 @@
     - Los comandos deben ser ejecutados **en el directorio del proyecto** y en una terminal válida:
         - **cmd** en Windows (las instrucciones están escritas exclusivamente para cmd y no para PowerShell)
         - **zsh, bash o similar** en macOS y Linux.
-    - _**importante para usuarios de macOS y Linux**: Las instrucciones muestran al comando de Python como `python`. Dependiendo de su configuración, puede que tengan que cambiarlo por `python3` u otra variación. El comando que usen habitualmente debería estar bien siempre y cuando sea una versión de Python estándar, estable y mayor a 3.10_
+    - _**importante para usuarios de macOS y Linux**: Las instrucciones muestran al comando de Python como `python`. Dependiendo de su configuración, puede que tengan que cambiarlo por `python3` u otra variación. El mismo comando que usen habitualmente debería estar bien siempre y cuando este corresponda a una versión de Python estándar, estable y mayor a 3.10_
 
 ### 1.1 Crear el entorno virtual
 Usamos los entornos virtuales de Python (`venv`) para evitar conflictos entre los paquetes que descarga nuestra aplicación y los que ya pudieran estar instalados en el sistema.
@@ -67,4 +67,4 @@ python -m src.main
 ```
 Y cualquier otro archivo requerido (ej. los CSVs solicitados vacíos), será creado automáticamente por la aplicación.
 
-Esta sintaxis se utiliza porque la aplicación está dividida en módulos, y 
+Esta sintaxis (con `-m` y `src.main` en vez de `python src/main.py` por ejemplo) se utiliza porque la aplicación está dividida en módulos.
