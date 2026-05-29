@@ -1,6 +1,5 @@
 # acá van todos los tipos "custom" reutilizados a lo largo del proyecto
 from enum import Enum
-from numbers import Number
 from typing import TypedDict, Any
 
 
@@ -16,8 +15,8 @@ class OpcionesMenu(Enum):
 
 class Ciudad(TypedDict):
     nombre_completo: str  # ej. "Buenos Aires, AR"
-    lat: Number
-    lon: Number
+    lat: int | float
+    lon: int | float
     otros_nombres: list[str]
 
 
@@ -28,10 +27,10 @@ def a_ciudad(d: dict[Any, Any]) -> Ciudad:
     assert isinstance(nombre_completo, str)
 
     lat = d["lat"]
-    assert isinstance(lat, Number)
+    assert isinstance(lat, (int, float))
 
     lon = d["lon"]
-    assert isinstance(lon, Number)
+    assert isinstance(lat, (int, float))
 
     otros_nombres = list(d["otros_nombres"])
     for n in otros_nombres:

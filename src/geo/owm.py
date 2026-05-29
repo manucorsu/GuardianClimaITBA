@@ -1,6 +1,5 @@
 from typing import Any
 import requests
-from numbers import Number
 from ..types import Ciudad
 from ..secrets import owm_api_key
 from . import geocache
@@ -83,7 +82,7 @@ def geocode_nombre_ciudad(ciudad: str) -> Ciudad | None:
     if c_en_cache:
         print("...✅ Encontrada en caché.")
         return c_en_cache
-    print("por geocoding...", end="")
+    print(" por geocoding...", end="")
     parametros: dict[str, Any] = {
         "q": ciudad,
         "appid": owm_api_key,
@@ -131,10 +130,10 @@ def geocode_nombre_ciudad(ciudad: str) -> Ciudad | None:
         nombre_completo = f"{nom}, {pais}"
 
         lat = datos_ciudad["lat"]
-        assert isinstance(lat, Number)
+        assert isinstance(lat, (int, float))
 
         lon = datos_ciudad["lon"]
-        assert isinstance(lon, Number)
+        assert isinstance(lon, (int, float))
 
         nu = ciudad.upper()
         nueva_c: Ciudad = {
@@ -143,9 +142,8 @@ def geocode_nombre_ciudad(ciudad: str) -> Ciudad | None:
             "lon": lon,
             "otros_nombres": [nu] if nu != nombre_completo.upper() else [],
         }
-        geocache.agregar_ciudad_nueva(nueva_c)
         print("✅ Encontrada.")
-        return nueva_c
+        return geocache.agregar_ciudad_nueva(nueva_c)
     except (KeyError, AssertionError, TypeError, AttributeError) as ex:
         print(
             f"❌.\nError: formato inesperado de datos de OWM geocoding. Más info.: {ex}"
