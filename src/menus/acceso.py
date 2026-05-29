@@ -3,12 +3,13 @@ from .. import csv_io
 from ..password_strength import validar_password, criterios_strs
 from ..choicer import choicer
 from ..clear import clear
-from .opc_menu_base import OpcionesMenu
+from ..types import OpcionesMenu
+from pathlib import Path
 
-PATH_CSV_USUARIOS = "csv/usuarios_simulados.csv"
+path_csv_usuarios = Path("csv/usuarios_simulados.csv")
 COLUMNAS_CSV_USUARIOS = ["username", "password_simulada"]
 
-usuarios_simulados = csv_io.leer_o_crear(PATH_CSV_USUARIOS, COLUMNAS_CSV_USUARIOS)
+usuarios_simulados = csv_io.leer_o_crear(path_csv_usuarios, COLUMNAS_CSV_USUARIOS)
 
 
 def registrar_usuario(username: str, password: str):
@@ -27,7 +28,7 @@ def registrar_usuario(username: str, password: str):
             )
 
     usuarios_simulados.append({"username": username, "password_simulada": password})
-    csv_io.escribir(PATH_CSV_USUARIOS, COLUMNAS_CSV_USUARIOS, usuarios_simulados)
+    csv_io.escribir(path_csv_usuarios, COLUMNAS_CSV_USUARIOS, usuarios_simulados)
     return username
 
 

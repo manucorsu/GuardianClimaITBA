@@ -1,7 +1,8 @@
 from . import secrets
 from .menus.acceso import menu_acceso
-from .menus.opc_menu_base import OpcionesMenu
+from .types import OpcionesMenu
 from .choicer import choicer
+from .menus.consulta_clima import consulta_clima_prompt
 
 print("☀️  Iniciando GuardiánClima ITBA ☀️")
 
@@ -19,12 +20,15 @@ if not secrets.gemini_api_key:
     exit(1)
 print("✅\n")
 
+
 class OpcMenuPrincipal(OpcionesMenu):
-    CONSULTA_CLIMA = "Consultar clima actual" # (y guardar en historial global)
+    CONSULTA_CLIMA = "Consultar clima actual"  # (y guardar en historial global)
     VER_HISTORIAL = "Ver historial de consultas"
     ESTADISTICAS_EXPORTAR = "Estadísticas de uso/exportar historial"
     IA_VESTIR = "Consejo IA: ¿Cómo me visto hoy?"
     ACERCA_DE = "Acerca de"
+
+
 username = None
 while True:
     # entrypoint: Menú de Acceso
@@ -35,4 +39,8 @@ while True:
     print("☀️  GuardiánClima ITBA ☀️\n")
     print("📜 Menú principal\n")
     ch = choicer(list(OpcMenuPrincipal))
-    raise NotImplementedError()
+    match (ch):
+        case OpcMenuPrincipal.CONSULTA_CLIMA:
+            consulta_clima_prompt()
+        case _:
+            print(NotImplemented)

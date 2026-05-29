@@ -2,10 +2,11 @@ from typing import TypeVar
 
 T = TypeVar("T")
 
+
 # Hace que el usuario elija un elemento de la lista y devuelve ese elemento.
 # Usa T genérico para que pylance reconozca bien los casos de los menúes de opciones
 # (por eso esos usan list(enum) en vez de una lista normal y ya)
-def choicer(opciones: list[T]) -> T: 
+def choicer(opciones: list[T]) -> T:
     lngth = len(opciones)
 
     if lngth < 2:

@@ -3,7 +3,7 @@ from typing import Any
 from pathlib import Path
 
 
-def leer_o_crear(path: str, columnas: list[str]) -> list[dict[str, str]]:
+def leer_o_crear(path: Path, columnas: list[str]) -> list[dict[str, str]]:
     try:
         with open(path, "r", newline="") as f:
             reader = csv.DictReader(f)
@@ -17,10 +17,11 @@ def leer_o_crear(path: str, columnas: list[str]) -> list[dict[str, str]]:
 
     except FileNotFoundError:
         escribir(path, columnas, [])
+        return []
 
 
-def escribir(path: str, columnas: list[str], datos: list[dict[str, Any]]):
-    Path(path).parent.mkdir(parents=True, exist_ok=True)
+def escribir(path: Path, columnas: list[str], datos: list[dict[str, Any]]):
+    path.parent.mkdir(parents=True, exist_ok=True)
 
     with open(path, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=columnas)
