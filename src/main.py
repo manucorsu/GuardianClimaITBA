@@ -62,7 +62,8 @@ while True:
                 print("✅.")
                 historial_personal(username)
             except:
-                ValueError("❌ La contraseña es incorrecta.")
+                print("❌ La contraseña es incorrecta.")
+                pause()
                 continue
             pause()
         case OpcMenuPrincipal.ESTADISTICAS_EXPORTAR:
@@ -153,7 +154,7 @@ de seguridad (ver sección del Menú de Acceso para más info.)
 Importancia de las contraseñas seguras:
 Las contraseñas robustas reducen el riesgo de accesos no autorizados y 
 ayudan a proteger la información de los usuarios. Es por eso que implementamos
-los requerimientos que implementamos en línea con lo recomendado en por el Módulo
+los requerimientos que implementamos en línea con lo recomendado en el Módulo
 de Ciberseguridad.
 
 Advertencia de seguridad:
@@ -171,7 +172,7 @@ meteorológica actualizada en tiempo real. Debido a que decidimos utilizar el
 método actual recomendado por OWM en vez del sugerido por la consigna (ver
 aclaración en src/geo/owm.py), esto implica primero contactar a su API de
 Geocoding para obtener las coordenadas de la ciudad a partir de su nombre,
-(las cuales son cacheadas en un simple cache en JSON evitar requests
+(las cuales son cacheadas en un simple cache en JSON para evitar requests
 excesivas), para recién ahí poder solicitar a la Current Weather API el clima
 en esas coordenadas.
 
