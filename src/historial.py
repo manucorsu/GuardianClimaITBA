@@ -45,5 +45,23 @@ def agregar_datos(d: Clima):
     dump()
 
 
-def historial_personal(username: str):
-    return [c for c in historial_global if c["NombreDeUsuario"] == username]
+# Devuelve una lista con los nombres completos ("Buenos Aires, AR") de todas las
+# ciudades que recibieron consultas en orden alfabético.
+def todas_las_ciudades():
+    ciudades = list(set(c["Ciudad"] for c in historial_global))
+    return sorted(ciudades)
+
+
+# Ej. Pasando (usr1, "Buenos Aires, AR"), devuelve todas las veces en las que
+# el usr1 consultó el clima de Buenos Aires como lista de Climas, ordenadas por
+# fecha (de más reciente a más antigua)
+def obtener_historial_personal_ciudad(username: str, ciudad: str) -> list[Clima]:
+    return sorted(
+        [
+            c
+            for c in historial_global
+            if c["NombreDeUsuario"] == username and c["Ciudad"] == ciudad
+        ],
+        key=lambda c: c["FechaHoraCompleta"],
+        reverse=True,
+    )
