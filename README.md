@@ -74,6 +74,12 @@ GEMINI_API_KEY='tu api key de Gemini'
 
 Reemplazando `'tu api key de de OWM'` y `'tu api key de Gemini'` por sus keys reales de OpenWeatherMap y Gemini respectivamente.
 
+Si no tienen alguna o ambas de las dos API Keys solicitadas, se pueden obtener de forma gratuita en:
+- **OpenWeatherMap**: [https://openweathermap.org/](https://openweathermap.org/)
+- **Gemini**: [https://aistudio.google.com/](https://aistudio.google.com/)
+
+**El programa no funcionará si no están ambas keys presentes al momento de ejecutarlo, se cerrará con un error indicando que falta una API Key.**
+
 ### 1.5 Correr la aplicación
 
 Simplemente ejecuten en una terminal con el venv actviado:
