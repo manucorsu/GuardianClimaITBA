@@ -7,10 +7,6 @@ from json import JSONDecodeError
 from .data_time import api_dt_to_datetime
 from .. import historial
 
-assert owm_api_key is not None  # main no permite que este módulo llegue a abrirse
-# si no está la API key (cierra todo en el momento), esto es solo para satisfacer
-# al typechecker
-
 # Aclaración importante: Si bien en la consigna no aparece como obligatorio hacer
 # el geocoding por separado llamando a la otra API, en la documentación actual de
 # OWM dice que el geocoding del endpoint /weather ha quedado obsoleto y solicitan
@@ -77,6 +73,10 @@ def handle_owm_response_errors(
 def geocode_nombre_ciudad(nombre_ciudad: str) -> Ciudad | None:
     # En cumplimiento con el handling propuesto en la consigna (que es para la versión 2.5 que no requiere este paso),
     # devuelve None si no se encuentra ninguna ciudad o encuentra un error, print()eando adecuadamente
+    assert owm_api_key is not None  # main no permite que esto se ejecute
+    # si no está la API key (cierra todo en el momento), esto es solo para satisfacer
+    # al typechecker
+
     print("Buscando la ciudad", end="")
     c_en_cache = geocache.ciudad_en_cache(nombre_ciudad)
     if c_en_cache:
@@ -161,6 +161,10 @@ def geocode_nombre_ciudad(nombre_ciudad: str) -> Ciudad | None:
 
 
 def _buscar_clima_raw(ciudad: Ciudad) -> Any | None:
+    assert owm_api_key is not None  # main no permite que esto se ejecute
+    # si no está la API key (cierra todo en el momento), esto es solo para satisfacer
+    # al typechecker
+
     print(f"Buscando los datos del clima en {ciudad['nombre_completo']}...", end="")
     parametros: dict[str, Any] = {
         "lat": ciudad["lat"],
