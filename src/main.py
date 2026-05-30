@@ -123,13 +123,13 @@ MENÚ PRINCIPAL
      no se permite su uso sin que antes el usuario reingrese correctamente su
      contraseña 
 
-3. Estadísticas globales, exportar historial global
-   1. Estadísticas globales: Calcula y muestra
-      * Calcula la ciudad más consultada.
-      * Muestra la cantidad total de consultas.
-      * Calcula la temperatura promedio registrada.
-   * Los datos almacenados pueden utilizarse posteriormente para generar gráficos 
-     en Excel.
+3. Estadísticas globales y exportar historial global
+   * Primero, calcula y muestra los siguientes datos:
+      * ciudad más consultada.
+      * cantidad total de consultas.
+      * temperatura promedio registrada.
+   * Luego, exporta el historial global actual para que este pueda ser interpretado
+     y sus datos graficados por el usuario en una aplicación como Excel.
 
 4. Consejo IA: ¿Cómo me visto hoy?
    * Utiliza la API de Google Gemini.
