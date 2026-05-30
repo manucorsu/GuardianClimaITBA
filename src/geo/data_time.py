@@ -26,6 +26,20 @@ MESES = (
 
 
 def pretty_dt(dt: datetime):
-    if dt.tzinfo is None or dt.utcoffset() is None:
+    offset = dt.utcoffset()
+    if dt.tzinfo is None or offset is None:
         raise ValueError("El datetime debe ser offset-aware")
-    return f"{dt.day} de {MESES[dt.month - 1]} de {dt.year} " f"a las {dt:%H:%M}"
+
+    total_minutes = int(offset.total_seconds() // 60)
+    sign = "+" if total_minutes >= 0 else "-"
+    abs_minutes = abs(total_minutes)
+    hours = abs_minutes // 60
+    minutes = abs_minutes % 60
+    utc_offset = (
+        f"UTC{sign}{hours}" if minutes == 0 else f"UTC{sign}{hours}:{minutes:02d}"
+    )
+
+    return (
+        f"{dt.day} de {MESES[dt.month - 1]} de {dt.year} "
+        f"a las {dt:%H:%M} hora local ({utc_offset})"
+    )

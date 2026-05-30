@@ -1,5 +1,5 @@
 # ☀️ GuardiánClima ITBA
-**Grupo 121 ("")**
+**Grupo 121 ("Los Meteorólogos del Teclado")**
 - Matías Barreiro
 - Lautaro Cavagna
 - Manuel Corsunsky Gayá
