@@ -41,4 +41,4 @@ def pretty_dt(dt: datetime, reverse: bool = False):
 
     dmy = f"{dt.day} de {MESES[dt.month - 1]} de {dt.year}"
     hhmm = f"a las {dt:%H:%M} hora local ({utc_offset})"
-    return hhmm + " del " + dmy if reverse else dmy+ " " + hhmm
+    return hhmm + " del " + dmy if reverse else dmy + " " + hhmm

@@ -4,6 +4,7 @@ from ..choicer import choicer
 from ..clear import clear
 from typing import Any
 
+
 def historial_personal(username: str):
     print("--Consultar historial personal de consultas por ciudad--")
     print("¿De qué ciudad deseas conocer tu historial de consultas?")

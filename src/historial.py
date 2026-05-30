@@ -99,12 +99,16 @@ def obtener_ultima_consulta(username: str) -> Clima | None:
         return None
 
     return max(consultas_usuario, key=lambda c: c["FechaHoraCompleta"])
+
+
 def exportar_historial():
     now = datetime.now()
-    path=Path(f"csv/out/historial_global_{now.year}{now.month}{now.day}{now.hour}{now.minute}{now.second}.csv")
+    path = Path(
+        f"csv/out/historial_global_{now.year}{now.month}{now.day}{now.hour}{now.minute}{now.second}.csv"
+    )
     csv_io.escribir(
         path,
         COLUMNAS_CSV_HISTORIAL,
         [a_clima_csv(c) for c in historial_global],
     )
-    print(f"Historial global exportado a {path}")   
+    print(f"Historial global exportado a {path}")

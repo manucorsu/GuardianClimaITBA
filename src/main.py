@@ -51,7 +51,12 @@ while True:
         case OpcMenuPrincipal.VER_HISTORIAL:
             clear()
             try:
-                login(username, input("🔒️ Debés ingresar tu contraseña para acceder al historial: "))
+                login(
+                    username,
+                    input(
+                        "🔒️ Debés ingresar tu contraseña para acceder al historial: "
+                    ),
+                )
                 clear()
                 print("✅.")
                 historial_personal(username)
