@@ -76,7 +76,7 @@ Reemplazando `'tu api key de de OWM'` y `'tu api key de Gemini'` por sus keys re
 
 Si no tienen alguna o ambas de las dos API Keys solicitadas, se pueden obtener de forma gratuita en:
 - **OpenWeatherMap**: [https://openweathermap.org/](https://openweathermap.org/)
-- **Gemini**: [https://aistudio.google.com/](https://aistudio.google.com/)
+- **Gemini**: [https://aistudio.google.com/projects](https://aistudio.google.com/projects)
 
 **El programa no funcionará si no están ambas keys presentes al momento de ejecutarlo, se cerrará con un error indicando que falta una API Key.**
 
