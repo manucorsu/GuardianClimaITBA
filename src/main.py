@@ -1,9 +1,12 @@
 from . import secrets
-from .menus.acceso import menu_acceso
+from .menus.acceso import menu_acceso, login
 from .custom_types import OpcionesMenu
 from .choicer import choicer
 from .menus.consulta_clima import consulta_clima_prompt
 from .menus.consultas_historial import historial_personal
+from .menus.consulta_ia_vestir import prompt_ia_vestir
+from .pause import pause
+from .clear import clear
 
 print("☀️  Iniciando GuardiánClima ITBA ☀️")
 
@@ -24,9 +27,9 @@ print("✅\n")
 
 class OpcMenuPrincipal(OpcionesMenu):
     CONSULTA_CLIMA = "Consultar clima actual"  # (y guardar en historial global)
-    VER_HISTORIAL = "Ver historial de consultas"
+    VER_HISTORIAL = "🔒️ Ver historial de consultas"
     ESTADISTICAS_EXPORTAR = "Estadísticas de uso/exportar historial"
-    IA_VESTIR = "Consejo IA: ¿Cómo me visto hoy?"
+    IA_VESTIR = "🤖 Consejo IA: ¿Cómo me visto hoy?"
     ACERCA_DE = "Acerca de"
     CERRAR_SESION = "Cerrar sesión"
 
@@ -44,11 +47,18 @@ while True:
     match (ch):
         case OpcMenuPrincipal.CONSULTA_CLIMA:
             consulta_clima_prompt(username)
+            pause()
         case OpcMenuPrincipal.VER_HISTORIAL:
-            historial_personal(username)
-        case OpcMenuPrincipal.CERRAR_SESION:
-            print()
-            username = None
+            clear()
+            try:
+                login(username, input("🔒️ Debés ingresar tu contraseña para acceder al historial: "))
+                clear()
+                print("✅.")
+                historial_personal(username)
+            except:
+                ValueError("❌ La contraseña es incorrecta.")
+                continue
+            pause()
         case OpcMenuPrincipal.ACERCA_DE:
             texto = """
 === ACERCA DE GUARDIÁNCLIMA ITBA ===
@@ -134,9 +144,15 @@ Integrantes:
 * Lautaro Cavagna
 * Matias Barreiro
 * Enzo Creatore
-
 """
             print(texto)
-            input("\nPresiona Enter para volver al menú principal...")  
+            pause()
+        case OpcMenuPrincipal.IA_VESTIR:
+            prompt_ia_vestir(username)
+            pause()
+        case OpcMenuPrincipal.CERRAR_SESION:
+            print()
+            username = None
         case _:
             raise NotImplementedError()
+    clear()

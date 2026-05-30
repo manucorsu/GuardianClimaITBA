@@ -10,7 +10,7 @@ def consulta_clima_prompt(username: str):
     ciudad = None
     while ciudad is None:
         ciudad = owm.geocode_nombre_ciudad(input("\nIngresa el nombre de una ciudad: "))
-    clima = owm.buscar_clima(username, ciudad)
+    clima = owm.buscar_clima(username, ciudad)  # type: ignore[reportAttributeAccessIssue, reportUnknownMemberType]
     if clima is None:
         return  # Vuelve al inicio
     pretty_print_informe(clima)

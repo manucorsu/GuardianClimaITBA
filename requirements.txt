@@ -1,3 +1,8 @@
 python-dotenv==1.2.2
 requests==2.34.2
 tabulate==0.10.0 # Para la tabla de historial personal
+
+# Al igual que como hicimos con OWM, cuando la consigna sugería usar el obsoleto 
+# google-generativeai (https://pypi.org/project/google-generativeai/), decidimos
+# seguir la recomendación de Google y utilizar el vigente google-genai en su lugar.
+google-genai==2.7.0

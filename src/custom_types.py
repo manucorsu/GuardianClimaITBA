@@ -178,4 +178,5 @@ def pretty_print_informe(c: Clima):
     print(
         f"🌡️ Hacen {c["Temperatura_C"]}°C, con una sensación térmica de {c['Sensacion_Termica']}°C."
     )
-    print(f"💧 El porcentaje de humedad es {c["Humedad_Porcentaje"]}%")
+    print(f"💧 El porcentaje de humedad es {c["Humedad_Porcentaje"]}%.")
+    print(f"🍃 La velocidad del viento es de {c["Viento_kmh"]:.2f} km/h.\n")

@@ -65,3 +65,14 @@ def obtener_historial_personal_ciudad(username: str, ciudad: str) -> list[Clima]
         key=lambda c: c["FechaHoraCompleta"],
         reverse=True,
     )
+
+
+def obtener_ultima_consulta(username: str) -> Clima | None:
+    """Devuelve el registro más reciente para el usuario, o None si no tiene consultas."""
+    consultas_usuario = [
+        c for c in historial_global if c["NombreDeUsuario"] == username
+    ]
+    if not consultas_usuario:
+        return None
+
+    return max(consultas_usuario, key=lambda c: c["FechaHoraCompleta"])

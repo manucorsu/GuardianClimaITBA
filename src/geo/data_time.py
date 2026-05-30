@@ -25,7 +25,7 @@ MESES = (
 )
 
 
-def pretty_dt(dt: datetime):
+def pretty_dt(dt: datetime, reverse: bool = False):
     offset = dt.utcoffset()
     if dt.tzinfo is None or offset is None:
         raise ValueError("El datetime debe ser offset-aware")
@@ -39,7 +39,6 @@ def pretty_dt(dt: datetime):
         f"UTC{sign}{hours}" if minutes == 0 else f"UTC{sign}{hours}:{minutes:02d}"
     )
 
-    return (
-        f"{dt.day} de {MESES[dt.month - 1]} de {dt.year} "
-        f"a las {dt:%H:%M} hora local ({utc_offset})"
-    )
+    dmy = f"{dt.day} de {MESES[dt.month - 1]} de {dt.year}"
+    hhmm = f"a las {dt:%H:%M} hora local ({utc_offset})"
+    return hhmm + " del " + dmy if reverse else dmy+ " " + hhmm
