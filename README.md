@@ -4,7 +4,7 @@
 - Lautaro Cavagna
 - Manuel Corsunsky Gayá
 - Enzo Creatore
-<!--TODO: nombre del grupo, legajos?-->
+<!--TODO: legajos?-->
 
 ## 1. Instrucciones de instalación
 - Se requiere que el sistema tenga **Python 3.11 o superior instalado**. Este programa fue probado principalmente en la última versión estable de Python, 3.14.5, y funciona perfectamente en ella.
