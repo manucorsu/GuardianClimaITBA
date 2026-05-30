@@ -1,6 +1,7 @@
 from pathlib import Path
 from . import csv_io
 from .custom_types import a_clima, Clima, a_clima_csv
+from datetime import datetime
 
 path_csv_historial = Path("csv/historial_global.csv")
 COLUMNAS_CSV_HISTORIAL = [
@@ -52,6 +53,28 @@ def todas_las_ciudades():
     return sorted(ciudades)
 
 
+def ciudad_mas_consultada() -> str | None:
+    conteo_por_ciudad: dict[str, int] = {}
+    for consulta in historial_global:
+        ciudad = consulta["Ciudad"]
+        conteo_por_ciudad[ciudad] = conteo_por_ciudad.get(ciudad, 0) + 1
+
+    ciudad_mas_consultada, _ = max(conteo_por_ciudad.items(), key=lambda item: item[1])
+    return ciudad_mas_consultada
+
+
+def total_consultas() -> int:
+    return len(historial_global)
+
+
+def temperatura_promedio() -> float | None:
+    if not historial_global:
+        return None
+
+    total_temp = sum(c["Temperatura_C"] for c in historial_global)
+    return total_temp / len(historial_global)
+
+
 # Ej. Pasando (usr1, "Buenos Aires, AR"), devuelve todas las veces en las que
 # el usr1 consultó el clima de Buenos Aires como lista de Climas, ordenadas por
 # fecha (de más reciente a más antigua)
@@ -65,3 +88,13 @@ def obtener_historial_personal_ciudad(username: str, ciudad: str) -> list[Clima]
         key=lambda c: c["FechaHoraCompleta"],
         reverse=True,
     )
+
+def exportar_historial():
+    now = datetime.now()
+    path=Path(f"csv/out/historial_global_{now.year}{now.month}{now.day}{now.hour}{now.minute}{now.second}.csv")
+    csv_io.escribir(
+        path,
+        COLUMNAS_CSV_HISTORIAL,
+        [a_clima_csv(c) for c in historial_global],
+    )
+    print(f"Historial global exportado a {path}")   

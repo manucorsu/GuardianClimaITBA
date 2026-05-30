@@ -3,7 +3,7 @@ from .menus.acceso import menu_acceso
 from .custom_types import OpcionesMenu
 from .choicer import choicer
 from .menus.consulta_clima import consulta_clima_prompt
-from .menus.consultas_historial import historial_personal
+from .menus.consultas_historial import historial_personal, estadisticas_globales
 
 print("☀️  Iniciando GuardiánClima ITBA ☀️")
 
@@ -46,6 +46,8 @@ while True:
             consulta_clima_prompt(username)
         case OpcMenuPrincipal.VER_HISTORIAL:
             historial_personal(username)
+        case OpcMenuPrincipal.ESTADISTICAS_EXPORTAR:
+            estadisticas_globales()
         case OpcMenuPrincipal.CERRAR_SESION:
             print()
             username = None

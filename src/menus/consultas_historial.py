@@ -4,7 +4,6 @@ from ..choicer import choicer
 from ..clear import clear
 from typing import Any
 
-
 def historial_personal(username: str):
     print("--Consultar historial personal de consultas por ciudad--")
     print("¿De qué ciudad deseas conocer tu historial de consultas?")
@@ -38,3 +37,21 @@ def historial_personal(username: str):
         return
 
     print(tabulate(filas, headers=headers, tablefmt="grid", maxcolwidths=20))
+
+
+def estadisticas_globales():
+    clear()
+    print("--Estadísticas globales de uso--")
+    ciudad = historial.ciudad_mas_consultada()
+    total = historial.total_consultas()
+    temp_promedio = historial.temperatura_promedio()
+
+    if total == 0:
+        print("No hay consultas registradas en el historial global.")
+    else:
+        print(f"Ciudad más consultada: {ciudad}")
+        print(f"Total de consultas: {total}")
+        print(f"Temperatura promedio registrada: {temp_promedio:.2f} °C")
+
+    historial.exportar_historial()
+    input("\nPresiona Enter para volver al menú principal...")
