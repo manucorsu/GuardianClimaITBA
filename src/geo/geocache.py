@@ -1,4 +1,4 @@
-from ..types import Ciudad, a_ciudad
+from ..custom_types import Ciudad, a_ciudad
 from pathlib import Path
 import json
 
@@ -36,26 +36,26 @@ def agregar_ciudad_nueva(ciudad_nueva: Ciudad) -> Ciudad:
     # Primero verifica si es realmente una ciudad nueva y no solo un nombre alternativo para una ya existente. En caso de que ya exista, devuelve el
     # dict de ciudad existente con el nombre nuevo agregado; Si es verdaderamente una ciudad nueva solo devuelve el mismo diccionario que se pasó.
     # En cualquier caso agrega la ciudad nueva/actualiza la existente en el caché y lo dumpea.
+    # Verifica si la ciudad ya existe usando su nombre completo, lo cual significa que bajo ciertas circunstancias puede hacer que dos ciudades
+    # lejanas en el mismo país (ej. Portland, Oregon y Portland, Maine en Estados Unidos) puedan quedar agrupadas como la misma ciudad. Sin
+    # embargo, como la información de las provincias/estados en las que están las distintas ciudades no siempre aparece y cuando lo hace
+    # está únicamente en inglés (quedaría raro ver "Buenos Aires, Autonomous City of Buenos Aires, AR" en una aplicación en español) y la
+    # consigna ni siquiera solicita el país, asumimos que esta limitación no tendría gram importancia.
     existing_idx = None
     for i, c in enumerate(_cache):
-        if ciudad_nueva["nombre_completo"] == c["nombre_completo"] and (
-            int(ciudad_nueva["lat"]),
-            int(ciudad_nueva["lon"]),
-        ) == (int(c["lat"]), int(c["lon"])):
-            # Como en el mundo existen ciudades lejanas con el mismo nombre (ej. Arlington, Texas y Arlington, Virginia), se
-            # considera la ciudad ya existe si tiene el mismo nombre y están "más o menos" en el mismo lugar truncando las coordenadas a int.
+        if ciudad_nueva["nombre_completo"] == c["nombre_completo"]:
             existing_idx = i
             c["otros_nombres"] = list(
                 set(c["otros_nombres"] + ciudad_nueva["otros_nombres"])
             )  # list(set()) elimina duplicados
             _cache[i] = c
             break
-    if not existing_idx:
+    if existing_idx is None:
         _cache.append(ciudad_nueva)
 
     dump()
 
-    if not existing_idx:
+    if existing_idx is None:
         return ciudad_nueva
     else:
         return _cache[existing_idx]

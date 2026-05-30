@@ -3,7 +3,7 @@ from .. import csv_io
 from ..password_strength import validar_password, criterios_strs
 from ..choicer import choicer
 from ..clear import clear
-from ..types import OpcionesMenu
+from ..custom_types import OpcionesMenu
 from pathlib import Path
 
 path_csv_usuarios = Path("csv/usuarios_simulados.csv")

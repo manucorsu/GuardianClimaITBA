@@ -7,12 +7,12 @@
 <!--TODO: nombre del grupo, legajos?-->
 
 ## 1. Instrucciones de instalación
-- Se requiere que el sistema tenga **Python 3.10 o superior instalado**. Este programa fue probado principalmente en la última versión estable de Python, 3.14.5, y funciona perfectamente en ella.
+- Se requiere que el sistema tenga **Python 3.11 o superior instalado**. Este programa fue probado principalmente en la última versión estable de Python, 3.14.5, y funciona perfectamente en ella.
 - Se mostrarán varios comandos a ejecutar en la terminal. Tener en cuenta:
     - Los comandos deben ser ejecutados **en el directorio del proyecto** y en una terminal válida:
         - **cmd** en Windows (las instrucciones están escritas exclusivamente para cmd y no para PowerShell)
         - **zsh, bash o similar** en macOS y Linux.
-    - _**importante para usuarios de macOS y Linux**: Las instrucciones muestran al comando de Python como `python`. Dependiendo de su configuración, puede que tengan que cambiarlo por `python3` u otra variación. El mismo comando que usen habitualmente debería estar bien siempre y cuando este corresponda a una versión de Python estándar, estable y mayor a 3.10_
+    - _**importante para usuarios de macOS y Linux**: Las instrucciones muestran al comando de Python como `python`. Dependiendo de su configuración, puede que tengan que cambiarlo por `python3` u otra variación. El mismo comando que usen habitualmente debería estar bien siempre y cuando este corresponda a una versión de Python estándar, estable y mayor a 3.11_
 
 ### 1.1 Crear el entorno virtual
 Usamos los entornos virtuales de Python (`venv`) para evitar conflictos entre los paquetes que descarga nuestra aplicación y los que ya pudieran estar instalados en el sistema.
@@ -49,7 +49,7 @@ Todas las dependencias están en `requirements.txt`, en un formato que permite q
 python -m pip install -r requirements.txt
 ```
 
-Verán cómo pip descarga todas las dependencias (y sus dependencias) al venv, puede tardar un tiempo. Si ven un error, asegúrense de tener el entorno activado y estar utilizando una versión de Python mayor o igual a 3.10.
+Verán cómo pip descarga todas las dependencias (y sus dependencias) al venv, puede tardar un tiempo. Si ven un error, asegúrense de tener el entorno activado y estar utilizando una versión de Python mayor o igual a 3.11.
 
 ### 1.4 Crear `.env` con las API Keys necesarias.
 El `.env` (no confundir con `.venv`) es un archivo de texto que contiene las API keys y otros datos sensibles que no deben ser subidos como parte del repositorio. Por este motivo, no aparece creado, ya que está en `.gitignore`.

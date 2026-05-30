@@ -1,6 +1,6 @@
 from . import secrets
 from .menus.acceso import menu_acceso
-from .types import OpcionesMenu
+from .custom_types import OpcionesMenu
 from .choicer import choicer
 from .menus.consulta_clima import consulta_clima_prompt
 
@@ -27,6 +27,7 @@ class OpcMenuPrincipal(OpcionesMenu):
     ESTADISTICAS_EXPORTAR = "Estadísticas de uso/exportar historial"
     IA_VESTIR = "Consejo IA: ¿Cómo me visto hoy?"
     ACERCA_DE = "Acerca de"
+    CERRAR_SESION = "Cerrar sesión"
 
 
 username = None
@@ -41,6 +42,9 @@ while True:
     ch = choicer(list(OpcMenuPrincipal))
     match (ch):
         case OpcMenuPrincipal.CONSULTA_CLIMA:
-            consulta_clima_prompt()
+            consulta_clima_prompt(username)
+        case OpcMenuPrincipal.CERRAR_SESION:
+            print()
+            username = None
         case _:
-            print(NotImplemented)
+            raise NotImplementedError()
