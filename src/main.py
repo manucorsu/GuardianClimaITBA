@@ -3,7 +3,7 @@ from .menus.acceso import menu_acceso, login
 from .custom_types import OpcionesMenu
 from .choicer import choicer
 from .menus.consulta_clima import consulta_clima_prompt
-from .menus.consultas_historial import historial_personal
+from .menus.consultas_historial import historial_personal, estadisticas_globales
 from .menus.consulta_ia_vestir import prompt_ia_vestir
 from .pause import pause
 from .clear import clear
@@ -59,6 +59,8 @@ while True:
                 ValueError("❌ La contraseña es incorrecta.")
                 continue
             pause()
+        case OpcMenuPrincipal.ESTADISTICAS_EXPORTAR:
+            estadisticas_globales()
         case OpcMenuPrincipal.ACERCA_DE:
             texto = """
 === ACERCA DE GUARDIÁNCLIMA ITBA ===
