@@ -171,10 +171,10 @@ def emoji_descripcion(icon_code: int | None):
 
 
 def pretty_print_informe(c: Clima):
-    print(f"--Informe meteorológico de {c["Ciudad"]}--")
+    print(f"\n--Informe meteorológico de {c["Ciudad"]}--")
     print(f"🕒️ {pretty_dt(c["FechaHoraCompleta"])}")
     ed = emoji_descripcion(c.get("icon_code"))
-    print(f"{ed} {c["Condicion_Clima"]} {ed}")
+    print(f"{ed}  {c["Condicion_Clima"]} {ed}")
     print(
         f"🌡️ Hacen {c["Temperatura_C"]}°C, con una sensación térmica de {c['Sensacion_Termica']}°C."
     )
