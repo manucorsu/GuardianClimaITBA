@@ -200,7 +200,7 @@ Nombre del grupo:
 Integrantes:
 * Manuel Corsunsky Gayá
 * Lautaro Cavagna
-* Matias Barreiro
+* Matías Barreiro
 * Enzo Creatore
 """
             pager(texto)
