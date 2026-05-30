@@ -53,6 +53,13 @@ def todas_las_ciudades():
     return sorted(ciudades)
 
 
+def ciudades_del_usuario(username: str) -> list[str]:
+    ciudades = list(
+        {c["Ciudad"] for c in historial_global if c["NombreDeUsuario"] == username}
+    )
+    return sorted(ciudades)
+
+
 def ciudad_mas_consultada() -> str | None:
     conteo_por_ciudad: dict[str, int] = {}
     for consulta in historial_global:

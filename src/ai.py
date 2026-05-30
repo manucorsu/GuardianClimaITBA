@@ -7,8 +7,6 @@ from .pause import pause
 
 assert gemini_api_key is not None
 
-print("Inicializando el cliente de Gemini...", end="")
-
 
 PROMPT = "Estoy en {} y por salir. El clima se describe como {}, la sensación térmica es {}°C, la humedad {}% y la velocidad del viento {} km/h. ¿Qué debería ponerme? Sé breve y práctico."
 
@@ -16,7 +14,7 @@ PROMPT = "Estoy en {} y por salir. El clima se describe como {}, la sensación t
 # Mezclando el método de la consigna con el actual:
 # https://github.com/googleapis/python-genai
 def obtener_consejo_ia_gemini(c: Clima):
-    print("Inicialiando el cliente de Gemini...", end="")
+    print("Inicializando el cliente de Gemini...", end="")
     client = None
     try:
         client = genai.Client(api_key=gemini_api_key)
@@ -25,7 +23,6 @@ def obtener_consejo_ia_gemini(c: Clima):
         print(
             f"❌. Ocurrió un error al intentar establecer el cliente de Gemini. Verificá que la GEMINI_API_KEY en .env sea correcta. Las funciones de Gemini no estarán disponibles. Error:\n{ex}"
         )
-        pause()
         return
 
     print("✨ Obteniendo el consejo de Gemini...", end="")

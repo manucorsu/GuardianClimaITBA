@@ -8,8 +8,17 @@ from typing import Any
 def historial_personal(username: str):
     print("--Consultar historial personal de consultas por ciudad--")
     print("¿De qué ciudad deseas conocer tu historial de consultas?")
-    todas_las_ciudades = historial.todas_las_ciudades()
-    ciudad = choicer(todas_las_ciudades)
+    ciudades_usuario = historial.ciudades_del_usuario(username)
+
+    if not ciudades_usuario:
+        print("No hay historial personal guardado para este usuario.")
+        return
+
+    if len(ciudades_usuario) == 1:
+        ciudad = ciudades_usuario[0]
+    else:
+        ciudad = choicer(ciudades_usuario)
+
     hpc = historial.obtener_historial_personal_ciudad(username, ciudad)
     clear()
 
