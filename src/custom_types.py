@@ -11,8 +11,9 @@ class OpcionesMenu(Enum):
 
 
 # así, si todos los menúes heredan de esta para sus opciones,
-# cuando choicer mostrará las opciones como sus valores y
-# no `EnumName.MEMBER_NAME`
+# choicer mostrará las opciones como sus valores y
+# no `EnumName.MEMBER_NAME`, ej. "Consultar clima actual" en
+# vez de "OpcMenuPrincipal.CONSULTA_CLIMA"
 
 
 class Ciudad(TypedDict):

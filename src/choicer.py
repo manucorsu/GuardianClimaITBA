@@ -1,3 +1,4 @@
+from .clear import clear
 from typing import TypeVar
 
 T = TypeVar("T")
@@ -20,6 +21,8 @@ def choicer(opciones: list[T]) -> T:
             if chi in range(0, lngth):
                 return opciones[chi]
             else:
+                clear()
                 print(f"Opción inválida; Debés ingresar un número entre 1 y {lngth}\n")
         except ValueError:
+            clear()
             print("Debés ingresar un número.")

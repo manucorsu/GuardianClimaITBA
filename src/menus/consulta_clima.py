@@ -1,10 +1,12 @@
 from ..geo import owm
 from ..custom_types import pretty_print_informe
+from ..clear import clear
 
 
 def consulta_clima_prompt(username: str):
+    clear()
     print(
-        "\n--CONSULTAR CLIMA--\n💡 Consejo: para obtener mejores resultados, escribí el nombre de la ciudad junto con su código de país, ej: 'Buenos Aires, AR' o 'París, FR'"
+        "--CONSULTAR CLIMA--\n💡 Consejo: para obtener mejores resultados, escribí el nombre de la ciudad junto con su código de país, ej: 'Buenos Aires, AR' o 'París, FR'"
     )
 
     ciudad = None

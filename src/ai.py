@@ -5,15 +5,14 @@ from .custom_types import Clima
 from .secrets import gemini_api_key
 from .pause import pause
 
-assert gemini_api_key is not None
-
-
 PROMPT = "Estoy en {} y por salir. El clima se describe como {}, la sensación térmica es {}°C, la humedad {}% y la velocidad del viento {} km/h. ¿Qué debería ponerme? Sé breve y práctico."
 
 
 # Mezclando el método de la consigna con el actual:
 # https://github.com/googleapis/python-genai
 def obtener_consejo_ia_gemini(c: Clima):
+    assert gemini_api_key is not None
+
     print("Inicializando el cliente de Gemini...", end="")
     client = None
     try:
@@ -25,7 +24,7 @@ def obtener_consejo_ia_gemini(c: Clima):
         )
         return
 
-    print("✨ Obteniendo el consejo de Gemini...", end="")
+    print("Obteniendo el consejo de Gemini...", end="")
 
     fp = PROMPT.format(
         c["Ciudad"],
@@ -49,7 +48,7 @@ def obtener_consejo_ia_gemini(c: Clima):
         resultado = response.text
         if resultado is None:
             raise ValueError("Gemini no devolvió un resultado.")
-        print(" ✅.")
+        print(" ✅.\n")
         return resultado
     except Exception as ex:
         print(f"❌. Ocurrió un error: {ex}")

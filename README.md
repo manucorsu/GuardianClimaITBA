@@ -75,6 +75,7 @@ GEMINI_API_KEY='tu api key de Gemini'
 Reemplazando `'tu api key de de OWM'` y `'tu api key de Gemini'` por sus keys reales de OpenWeatherMap y Gemini respectivamente.
 
 Si no tienen alguna o ambas de las dos API Keys solicitadas, se pueden obtener de forma gratuita en:
+
 - **OpenWeatherMap**: [https://openweathermap.org/](https://openweathermap.org/)
 - **Gemini**: [https://aistudio.google.com/projects](https://aistudio.google.com/projects)
 
@@ -137,11 +138,12 @@ Una vez que el usuario se registra o inicia sección exitosamente, accede al men
    - Los datos obtenidos se almacenan en historial_global.csv.
 
 2. **Ver mi historial personal de consultas**
-   - Muestra las consultas realizadas por el usuario para una ciudad determinada.
+   - Muestra las consultas realizadas por el usuario para una ciudad determinada en formato de tabla.
    - En cumplimiento con lo que pide la consigna de hacer que
      una funcionalidad sea "password-protected", esta es esa funcionalidad:
      no se permite su uso sin que antes el usuario reingrese correctamente su
      contraseña
+   - _Recomendamos agrandar el tamaño de la ventana de la terminal al usar esta función para que la tabla se vea correctamente_.
 
 3. **Estadísticas globales y exportar historial global**
    - Primero, calcula y muestra los siguientes datos:

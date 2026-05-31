@@ -5,6 +5,7 @@ from ..choicer import choicer
 from ..clear import clear
 from ..custom_types import OpcionesMenu
 from pathlib import Path
+from ..pause import pause
 
 path_csv_usuarios = Path("csv/usuarios_simulados.csv")
 COLUMNAS_CSV_USUARIOS = ["username", "password_simulada"]
@@ -21,11 +22,16 @@ def registrar_usuario(username: str, password: str):
             raise ValueError("El username ya existe. Por favor elige otro.")
 
     vp = validar_password(password, username)
-    for criterio in criterios_strs:
-        if vp[criterio] is not True:
-            raise ValueError(
-                f"El password no cumple el criterio de {criterio}: {criterios_strs[criterio]}"
-            )
+    criterios_fallidos = [
+        f"- {criterio}: {criterios_strs[criterio]}\n"
+        for criterio in criterios_strs
+        if not vp[criterio]
+    ]
+    if criterios_fallidos:
+        raise ValueError(
+            "El password no cumple los siguientes criterios:\n"
+            + "\n".join(criterios_fallidos)
+        )
 
     usuarios_simulados.append({"username": username, "password_simulada": password})
     csv_io.escribir(path_csv_usuarios, COLUMNAS_CSV_USUARIOS, usuarios_simulados)
@@ -50,9 +56,13 @@ def registrar_usuario_prompt():
         print("Registrando...", end="")
         ru = registrar_usuario(username, password)
         print("✅\nUsuario registrado exitosamente.\n")
+        pause("continuar")
+        clear()
         return ru
     except ValueError as ex:
-        print(f"❌\n{ex}\n")
+        print(f"❌\n\n{ex}\n")
+        pause("continuar")
+        clear()
 
 
 def login(username: str, password: str):
@@ -79,6 +89,8 @@ def login_prompt():
             print("\nIniciando sesión...", end="")
             u = login(username, password)
             print("✅\nSesión iniciada exitosamente.\n")
+            pause("continuar")
+            clear()
         except ValueError as ex:
             print(f"❌\n{ex}\n")
             ch = choicer(list(OpcReintentarLogin))

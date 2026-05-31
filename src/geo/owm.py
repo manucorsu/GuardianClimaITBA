@@ -77,6 +77,10 @@ def geocode_nombre_ciudad(nombre_ciudad: str) -> Ciudad | None:
     # si no está la API key (cierra todo en el momento), esto es solo para satisfacer
     # al typechecker
 
+    if nombre_ciudad.strip() == "":
+        print("❌ El nombre de la ciudad no puede estar vacío")
+        return
+
     print("Buscando la ciudad", end="")
     c_en_cache = geocache.ciudad_en_cache(nombre_ciudad)
     if c_en_cache:

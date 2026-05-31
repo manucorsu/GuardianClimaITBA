@@ -6,7 +6,8 @@ from typing import Any
 
 
 def historial_personal(username: str):
-    print("--Consultar historial personal de consultas por ciudad--")
+    clear()
+    print("--HISTORIAL PERSONAL--")
     print("¿De qué ciudad deseas conocer tu historial de consultas?")
     ciudades_usuario = historial.ciudades_del_usuario(username)
 
@@ -51,7 +52,7 @@ def historial_personal(username: str):
 
 def estadisticas_globales():
     clear()
-    print("--Estadísticas globales de uso--")
+    print("--ESTADÍSTICAS GLOBALES DE USO--")
     ciudad = historial.ciudad_mas_consultada()
     total = historial.total_consultas()
     temp_promedio = historial.temperatura_promedio()

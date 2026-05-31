@@ -1,9 +1,12 @@
 from ..historial import obtener_ultima_consulta
 from ..ai import obtener_consejo_ia_gemini
 from ..custom_types import pretty_dt
+from ..clear import clear
 
 
 def prompt_ia_vestir(username: str):
+    clear()
+    print("--IA VESTIR--")
     ultima_consulta = obtener_ultima_consulta(username)
     if ultima_consulta is None:
         print(
@@ -18,4 +21,4 @@ def prompt_ia_vestir(username: str):
     consejo = obtener_consejo_ia_gemini(ultima_consulta)
     if consejo is None:
         return
-    print(f"✨ Gemini dice:\n{consejo}")
+    print(f"✨ Gemini dice:\n{consejo}\n")
