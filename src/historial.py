@@ -105,7 +105,13 @@ def obtener_ultima_consulta(username: str) -> Clima | None:
     if not consultas_usuario:
         return None
 
-    return max(consultas_usuario, key=lambda c: c["FechaHoraCompleta"])
+    # Si hay varias consultas con la misma fecha/hora exacta, elegir la última
+    # consulta que se agregó al historial para ese usuario.
+    _, consulta_mas_reciente = max(
+        enumerate(consultas_usuario),
+        key=lambda item: (item[1]["FechaHoraCompleta"], item[0]),
+    )
+    return consulta_mas_reciente
 
 
 def exportar_historial():
