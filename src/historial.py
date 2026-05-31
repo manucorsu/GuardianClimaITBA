@@ -1,3 +1,4 @@
+from collections import Counter
 from pathlib import Path
 from . import csv_io
 from .custom_types import a_clima, Clima, a_clima_csv
@@ -60,14 +61,24 @@ def ciudades_del_usuario(username: str) -> list[str]:
     return sorted(ciudades)
 
 
-def ciudad_mas_consultada() -> str | None:
-    conteo_por_ciudad: dict[str, int] = {}
-    for consulta in historial_global:
-        ciudad = consulta["Ciudad"]
-        conteo_por_ciudad[ciudad] = conteo_por_ciudad.get(ciudad, 0) + 1
+def conteo_por_ciudad() -> Counter[str]:
+    return Counter(consulta["Ciudad"] for consulta in historial_global)
 
-    ciudad_mas_consultada, _ = max(conteo_por_ciudad.items(), key=lambda item: item[1])
-    return ciudad_mas_consultada
+
+def ciudad_mas_consultada() -> str | None:
+    if not historial_global:
+        return None
+    return conteo_por_ciudad().most_common(1)[0][0]
+
+
+def ciudades_mas_consultadas() -> tuple[list[str], int] | None:
+    if not historial_global:
+        return None
+
+    conteo = conteo_por_ciudad()
+    max_count = max(conteo.values())
+    ciudades = [ciudad for ciudad, cantidad in conteo.items() if cantidad == max_count]
+    return ciudades, max_count
 
 
 def total_consultas() -> int:

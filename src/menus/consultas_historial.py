@@ -53,14 +53,22 @@ def historial_personal(username: str):
 def estadisticas_globales():
     clear()
     print("--ESTADÍSTICAS GLOBALES DE USO--")
-    ciudad = historial.ciudad_mas_consultada()
     total = historial.total_consultas()
+    resumen = historial.ciudades_mas_consultadas()
     temp_promedio = historial.temperatura_promedio()
 
-    if total == 0:
+    if total == 0 or resumen is None:
         print("No hay consultas registradas en el historial global.")
     else:
-        print(f"Ciudad más consultada: {ciudad}")
+        ciudades, cantidad = resumen
+        if len(ciudades) == 1:
+            print(f"Ciudad más consultada: {ciudades[0]} ({cantidad} consulta{'s' if cantidad != 1 else ''})")
+        else:
+            print(
+                "Ciudades más consultadas: "
+                + ", ".join(ciudades)
+                + f" ({cantidad} consultas cada una)"
+            )
         print(f"Total de consultas: {total}")
         print(f"Temperatura promedio registrada: {temp_promedio:.2f} °C")
 
